@@ -22,6 +22,18 @@ export const RootLayout = () => {
   const modal = useSelector((state) => state.modal);
 
   useEffect(() => {
+    const preloadImages = Object.values(weatherBackgrounds).map((image) => {
+      const img = new Image();
+      img.src = image;
+      return img;
+    });
+
+    return () => {
+      preloadImages.forEach((img) => (img.onload = null));
+    };
+  }, []);
+
+  useEffect(() => {
     if (weatherData) {
       const weatherDescription =
         weatherData.list[selectedDayIdx].weather[0].main;
