@@ -1,5 +1,7 @@
 # Weather App
 
+![Weather App](https://github.com/iliavatafov/Weather-App/blob/main/src/assets/images/weather-app-image.png)
+
 This is a Weather App built with React.js. Follow the instructions below to get the project up and running on your local machine.
 
 ## Prerequisites
