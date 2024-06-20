@@ -4,7 +4,11 @@
 
 ![Weather App](https://github.com/iliavatafov/Weather-App/blob/main/src/assets/images/weather-app-image-1.png)
 
-This is a Weather App built with React.js. Follow the instructions below to get the project up and running on your local machine.
+This is a Weather App built with React.js.
+
+You can access the app diractly: [weather-app.com](https://66741989ab5bad40f17b0417--beautiful-blancmange-d33a13.netlify.app/)
+
+Follow the instructions below to get the project up and running on your local machine.
 
 ## Prerequisites
 
