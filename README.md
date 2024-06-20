@@ -12,12 +12,23 @@ Before you begin, ensure you have the following installed:
 
 1. **Clone the repository**:
 
-   ```bash
-   git clone https://github.com/iliavatafov/Weather-App.git
-   cd Weather-App/my-app
-   ```
+```bash
+git clone https://github.com/iliavatafov/Weather-App.git
+```
+
+```bash
+cd Weather-App/my-app
+```
 
 2. **Install dependencies**:
+
+Use npm (Node Package Manager) to install the required dependencies:
+
+```bash
+npm install
+```
+
+2. **Start the development server**:
 
 Once the dependencies are installed, you can start the development server:
 
