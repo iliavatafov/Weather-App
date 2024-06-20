@@ -6,7 +6,7 @@
 
 This is a Weather App built with React.js.
 
-You can access the app directly at [weather-app.com](https://66742135235f9b500ea5c3a2--genuine-lokum-1aab53.netlify.app/).
+You can access the app directly at [weather-app.com](https://66742377edca864c0c351add--enchanting-kringle-10837c.netlify.app/).
 
 Follow the instructions below to get the project up and running on your local machine.
 
