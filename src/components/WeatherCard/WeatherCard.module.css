@@ -1,0 +1,80 @@
+.weather-card {
+  width: 100%;
+  background: transparent;
+  color: white;
+  box-sizing: border-box;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.card-header .location {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.card-header .date {
+  flex: 1;
+  text-align: center;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-body h2 {
+  margin: 0.5rem 0;
+  font-size: 4rem;
+  font-weight: 400;
+}
+
+.card-body p {
+  margin: 0.5rem 0;
+}
+
+.card-body ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0.5rem 0;
+}
+
+.temperature-section,
+.wind-section {
+  width: 100%;
+  text-align: left;
+}
+
+.weather-data-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+span {
+  font-weight: 300;
+}
+
+@media screen and (min-width: 500px) {
+  .weather-card {
+    width: 340px;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .weather-card {
+    width: 380px;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .weather-card {
+    width: 420px;
+  }
+}

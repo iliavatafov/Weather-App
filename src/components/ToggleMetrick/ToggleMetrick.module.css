@@ -1,0 +1,77 @@
+.switch {
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  position: relative;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  margin: 5px;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.243);
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+  border-radius: var(--default-input-border-radius);
+  transition: 0.4s;
+  border-radius: 2rem;
+  height: 25px;
+  width: 42px;
+  align-self: center;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: rgba(51, 51, 51, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.243);
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.7);
+  border-radius: var(--default-input-border-radius);
+}
+
+input:checked + .slider:before {
+  transform: translateX(18px);
+}
+
+.toggle-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.label-container .label:first-of-type {
+  position: absolute;
+  top: 5px;
+  right: 60px;
+  color: var(--default-white);
+}
+
+.label-container .label:nth-of-type(2) {
+  position: absolute;
+  top: 5px;
+  left: 52px;
+  color: var(--default-white);
+  font-size: var(--default-text-size);
+}

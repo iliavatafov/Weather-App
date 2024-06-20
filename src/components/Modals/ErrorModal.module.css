@@ -1,0 +1,83 @@
+.error-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 2rem;
+  padding-top: 3rem;
+  max-width: 450px;
+  background-color: var(--default-white);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.xmark {
+  color: #000;
+  font-size: 1.2rem;
+  position: absolute;
+  right: 1rem;
+  top: 0.7rem;
+  cursor: pointer;
+}
+
+.error-body {
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.errorMessage h2 {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.errorMessage p {
+  font-size: 14px;
+}
+
+.link-to-error-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.link-to-error {
+  display: block;
+  border: 1px solid var(--default-black);
+  border-radius: 1rem;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+  color: var(--default-black);
+  height: 100%;
+  width: 5rem;
+}
+
+@media screen and (max-width: 600px) {
+  .error-container {
+    width: 90%;
+  }
+  .xmark {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .error-container {
+    padding: 1rem;
+    padding-top: 2.2rem;
+    font-size: 0.8rem;
+  }
+
+  .error-body {
+    padding: 1rem;
+  }
+
+  .errorMessage {
+    font-size: 0.8rem;
+  }
+}

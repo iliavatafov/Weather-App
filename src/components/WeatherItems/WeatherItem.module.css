@@ -1,0 +1,27 @@
+.weather-item {
+  width: auto;
+  color: var(--default-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 142px;
+  max-width: 200px;
+  width: 20%;
+  cursor: pointer;
+}
+
+.weather-item.active .highlight-line {
+  background-color: white;
+  height: 5px;
+  width: 100%;
+}
+
+.highlight-line {
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+header {
+  margin-top: 0.5rem;
+}
