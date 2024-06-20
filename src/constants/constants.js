@@ -1,5 +1,5 @@
 import cloudImage from "../assets/images/cloudy.jpg";
-import rainyImage from "../assets/images/rainy.avif";
+import rainyImage from "../assets/images/rainy.jpg";
 import snowyImage from "../assets/images/snowy.jpg";
 import sunnyImage from "../assets/images/sunny.jpg";
 
