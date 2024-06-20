@@ -13,7 +13,9 @@ import {
 } from "../../constants/constants";
 
 export const RootLayout = () => {
-  const [backgroundImage, setBackgroundImage] = useState(null);
+  const [backgroundImage, setBackgroundImage] = useState(
+    weatherBackgrounds["Clouds"]
+  );
 
   const weatherData = useSelector((state) => state.weatherData.fiveDaysWeather);
   const selectedDayIdx = useSelector((state) => state.userSettings.idx);
