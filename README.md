@@ -4,6 +4,8 @@
 
 ![Weather App](https://github.com/iliavatafov/Weather-App/blob/main/src/assets/images/weather-app-image-1.png)
 
+![Unit Test Report](https://github.com/iliavatafov/Weather-App/blob/main/src/assets/images/tests.png)
+
 This is a Weather App built with React.js.
 
 You can access the app directly at [weather-app.com](https://66742377edca864c0c351add--enchanting-kringle-10837c.netlify.app/).
