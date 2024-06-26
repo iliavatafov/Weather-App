@@ -31,6 +31,7 @@ export const ToggleMetrick = () => {
 
   const handleChange = () => {
     const newUnit = units === "metric" ? "imperial" : "metric";
+
     onToggle(newUnit);
   };
 

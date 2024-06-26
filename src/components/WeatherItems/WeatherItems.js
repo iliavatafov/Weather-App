@@ -12,7 +12,7 @@ export const WeatherItems = ({ weatherData, onCardClick }) => {
   };
 
   return (
-    <div className={styles["weather-items-containter"]}>
+    <div className={styles["weather-items-containter"]} role="weather-items">
       {weatherData.list.map((day, index) => (
         <WeatherItem
           day={day}

@@ -19,6 +19,7 @@ export const ErrorModal = () => {
         <FontAwesomeIcon
           icon={faXmark}
           className={styles.xmark}
+          data-testid="close-button"
           onClick={() => dispatch(modalActions.closeModal())}
         />
         <div className={styles["error-body"]}>
