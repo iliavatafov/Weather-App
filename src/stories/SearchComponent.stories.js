@@ -1,18 +1,6 @@
-import { Provider } from "react-redux";
-import { configureStore } from "@reduxjs/toolkit";
 import { userEvent, within } from "@storybook/testing-library";
 
-import weatherDataReducer from "../store/weatherDataSlice";
-import modalReducer from "../store/modalSlice";
-
 import { SearchComponent } from "../components/SearchComponent/SearchComponent";
-
-const store = configureStore({
-  reducer: {
-    weatherData: weatherDataReducer,
-    modal: modalReducer,
-  },
-});
 
 const withBlackBackground = (Story) => (
   <div style={{ backgroundColor: "black", padding: "20px" }}>
@@ -21,9 +9,7 @@ const withBlackBackground = (Story) => (
 );
 
 const Template = ({ handleSearch, ...args }) => (
-  <Provider store={store}>
-    <SearchComponent handleSearch={handleSearch} {...args} />
-  </Provider>
+  <SearchComponent handleSearch={handleSearch} {...args} />
 );
 
 const handleSearch = async () => {
@@ -59,8 +45,8 @@ TextColor.args = {
   textColor: "blue",
 };
 
-export const placeholderColor = Template.bind({});
-placeholderColor.args = {
+export const PlaceholderColor = Template.bind({});
+PlaceholderColor.args = {
   handleSearch,
   placeholderColor: "blue",
 };

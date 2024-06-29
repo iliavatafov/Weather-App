@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { setIdx, setUnits } from "../../store/userSettingsSlice";
 
-import styles from "./ToggleMetrick.module.css";
+import { Toggle } from "../Toggle/Toggle";
+
+const labels = ["°C", "°F"];
 
 export const ToggleMetrick = () => {
   const units = useSelector((state) => state.userSettings.units);
@@ -31,28 +33,14 @@ export const ToggleMetrick = () => {
 
   const handleChange = () => {
     const newUnit = units === "metric" ? "imperial" : "metric";
-
     onToggle(newUnit);
   };
 
   return (
-    <div
-      className={styles["toggle-container"]}
-      role="toggle"
-      aria-label="Select metric °C or °F"
-    >
-      <div className={styles["label-container"]}>
-        <span className={styles.label}>°C</span>
-        <span className={styles.label}>°F</span>
-      </div>
-      <label className={styles.switch}>
-        <input
-          type="checkbox"
-          checked={units === "imperial"}
-          onChange={handleChange}
-        />
-        <span className={styles.slider}></span>
-      </label>
-    </div>
+    <Toggle
+      handleChange={handleChange}
+      isChecked={units === "imperial"}
+      labels={labels}
+    />
   );
 };
