@@ -1,60 +1,19 @@
-import { useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
-import { setFiveDaysWeather } from "../../store/weatherDataSlice";
-import { modalActions } from "../../store/modalSlice";
-
-import { filterUniqueDays, getErrorMessage } from "../../helpers/helpers";
-
-import WeatherApi from "../../services/WeatherApi";
+import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import styles from "./SearchComponent.module.css";
 
-export const SearchComponent = () => {
+export const SearchComponent = ({
+  color = "#fff",
+  textColor = "#fff",
+  placeholder = "Search...",
+  placeholderColor = "#ccc",
+  inputValueInitialState = "",
+  handleSearch,
+}) => {
   const [searchActive, setSearchActive] = useState(false);
-  const [city, setCity] = useState("Sofia");
-  const [inputValue, setInputValue] = useState("");
-
-  const units = useSelector((state) => state.userSettings.units);
-
-  const dispatch = useDispatch();
-
-  const fetchWeatherData = useCallback(
-    async (city) => {
-      try {
-        let cityName = city;
-
-        if (!city) {
-          cityName = "Sofia";
-          setCity("Sofia");
-        }
-
-        const response = await WeatherApi.fetchNextFiveDaysWeather(
-          cityName,
-          units
-        );
-        dispatch(setFiveDaysWeather(filterUniqueDays(response.data)));
-      } catch (err) {
-        const statusCode = err.response.status;
-        const message = err.response
-          ? getErrorMessage(statusCode)
-          : "Something went wrong. Please try again later.";
-
-        dispatch(
-          modalActions.setErrorData({
-            isError: true,
-            message,
-          })
-        );
-      }
-    },
-    [dispatch, units]
-  );
-
-  useEffect(() => {
-    fetchWeatherData(city);
-  }, [units, city, fetchWeatherData]);
+  const [inputValue, setInputValue] = useState(inputValueInitialState);
 
   const handleSearchClick = () => {
     setSearchActive(true);
@@ -65,9 +24,8 @@ export const SearchComponent = () => {
   };
 
   const handleInputBlur = async () => {
-    setCity(inputValue);
     setSearchActive(false);
-    await fetchWeatherData(inputValue);
+    await handleSearch(inputValue);
   };
 
   const handleKeyDown = (event) => {
@@ -76,16 +34,31 @@ export const SearchComponent = () => {
     }
   };
 
+  useEffect(() => {
+    const styleElement = document.createElement("style");
+    styleElement.innerHTML = `
+      .${styles["search-input"]}::placeholder {
+        color: ${placeholderColor};
+      }
+    `;
+    document.head.appendChild(styleElement);
+
+    return () => {
+      document.head.removeChild(styleElement);
+    };
+  }, [placeholderColor]);
+
   return (
     <div
       className={styles["search-container"]}
       role="search"
-      aria-label="Search by city name"
+      aria-label="Search"
     >
       <i
         className={`fas fa-search ${styles["search-icon"]}`}
         onClick={handleSearchClick}
-        style={styles.icon}
+        style={{ color }}
+        data-testid="search-icon"
       ></i>
       {searchActive && (
         <input
@@ -96,9 +69,19 @@ export const SearchComponent = () => {
           onBlur={handleInputBlur}
           onKeyDown={handleKeyDown}
           autoFocus
-          placeholder="Please enter city name"
+          style={{ color: textColor }}
+          placeholder={placeholder}
         />
       )}
     </div>
   );
+};
+
+SearchComponent.propTypes = {
+  color: PropTypes.string,
+  textColor: PropTypes.string,
+  placeholder: PropTypes.string,
+  placeholderColor: PropTypes.string,
+  inputValueInitialState: PropTypes.string,
+  handleSearch: PropTypes.func.isRequired,
 };
