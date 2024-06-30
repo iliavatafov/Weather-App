@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import styles from "./SearchComponent.module.css";
@@ -11,6 +10,7 @@ export const SearchComponent = ({
   placeholderColor = "#ccc",
   inputValueInitialState = "",
   handleSearch,
+  setCityName,
 }) => {
   const [searchActive, setSearchActive] = useState(false);
   const [inputValue, setInputValue] = useState(inputValueInitialState);
@@ -21,6 +21,7 @@ export const SearchComponent = ({
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
+    setCityName(event.target.value);
   };
 
   const handleInputBlur = async () => {
@@ -75,13 +76,4 @@ export const SearchComponent = ({
       )}
     </div>
   );
-};
-
-SearchComponent.propTypes = {
-  color: PropTypes.string,
-  textColor: PropTypes.string,
-  placeholder: PropTypes.string,
-  placeholderColor: PropTypes.string,
-  inputValueInitialState: PropTypes.string,
-  handleSearch: PropTypes.func.isRequired,
 };

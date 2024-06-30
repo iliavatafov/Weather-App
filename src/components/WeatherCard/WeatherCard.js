@@ -1,16 +1,18 @@
 import { useMemo } from "react";
-import { useSelector } from "react-redux";
-import { useMetricsData } from "../../hooks/useMetricsData";
+
 import { capitalizeFirstLetter, formatDateTime } from "../../helpers/helpers";
 
 import { WeatherSection } from "./subcomponents/WeatherSection";
 
 import styles from "./WeatherCard.module.css";
 
-export const WeatherCard = ({ weatherData, cityName, country }) => {
-  const units = useSelector((state) => state.userSettings.units);
-  const { metricSymbol, windSpeedUnit } = useMetricsData(units);
-
+export const WeatherCard = ({
+  weatherData,
+  cityName,
+  country,
+  metricSymbol,
+  windSpeedUnit,
+}) => {
   const {
     main: { temp, feels_like, temp_min, temp_max, humidity },
     weather,

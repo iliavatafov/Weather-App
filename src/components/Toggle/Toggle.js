@@ -1,5 +1,3 @@
-import PropTypes from "prop-types";
-
 import styles from "./Toggle.module.css";
 
 export const Toggle = ({
@@ -32,11 +30,4 @@ export const Toggle = ({
       </div>
     </div>
   );
-};
-
-Toggle.propTypes = {
-  labels: PropTypes.arrayOf(PropTypes.string).isRequired,
-  isChecked: PropTypes.bool.isRequired,
-  handleChange: PropTypes.func.isRequired,
-  toggleBackgroundColor: PropTypes.string,
 };

@@ -1,14 +1,8 @@
 import { render, screen } from "@testing-library/react";
 
-import { Provider } from "react-redux";
-
-import configureStore from "redux-mock-store";
-
 import { formatDateTime } from "../../helpers/helpers";
 
 import { WeatherCard } from "./WeatherCard";
-
-const mockStore = configureStore([]);
 
 const mockWeatherData = {
   dt_txt: "2024-06-27 12:00:00",
@@ -18,30 +12,15 @@ const mockWeatherData = {
 };
 
 describe("WeatherCard", () => {
-  let store;
-
   beforeEach(() => {
-    dispatchMock = jest.fn();
-    store = mockStore({
-      weatherData: {
-        metricsData: {
-          metricSymbol: "°C",
-          windSpeedUnit: "m/s",
-        },
-      },
-      userSettings: {
-        units: "metric",
-      },
-    });
-
     render(
-      <Provider store={store}>
-        <WeatherCard
-          weatherData={mockWeatherData}
-          cityName="Test City"
-          country="Test Country"
-        />
-      </Provider>
+      <WeatherCard
+        weatherData={mockWeatherData}
+        cityName="Test City"
+        country="Test Country"
+        metricSymbol="°C"
+        windSpeedUnit="m/s"
+      />
     );
   });
 
@@ -62,27 +41,20 @@ describe("WeatherCard", () => {
     expect(tempElement).toBeInTheDocument();
   });
 
-  it("updates metric symbol and wind speed unit on unit change", () => {
-    store = mockStore({
-      weatherData: {
-        metricsData: {
-          metricSymbol: "°F",
-          windSpeedUnit: "mph",
-        },
-      },
-      userSettings: {
-        units: "imperial",
-      },
-    });
+  it("renders wind speed with correct unit based on initial state", () => {
+    const windElement = screen.getByText(`${mockWeatherData.wind.speed} m/s`);
+    expect(windElement).toBeInTheDocument();
+  });
 
+  it("updates metric symbol and wind speed unit on unit change", () => {
     render(
-      <Provider store={store}>
-        <WeatherCard
-          weatherData={mockWeatherData}
-          cityName="Test City"
-          country="Test Country"
-        />
-      </Provider>
+      <WeatherCard
+        weatherData={mockWeatherData}
+        cityName="Test City"
+        country="Test Country"
+        metricSymbol="°F"
+        windSpeedUnit="mph"
+      />
     );
 
     const tempElement = screen.getByText(

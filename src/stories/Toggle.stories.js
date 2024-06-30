@@ -1,5 +1,3 @@
-import PropTypes from "prop-types";
-
 import { Toggle } from "../components/Toggle/Toggle";
 
 const withBlackBackground = (Story) => (
@@ -9,14 +7,6 @@ const withBlackBackground = (Story) => (
 );
 
 const Template = ({ ...args }) => <Toggle {...args} />;
-
-Template.propTypes = {
-  labels: PropTypes.arrayOf(PropTypes.string).isRequired,
-  isChecked: PropTypes.bool.isRequired,
-  handleChange: PropTypes.func.isRequired,
-  toggleBackgroundColor: PropTypes.string,
-  labelsColor: PropTypes.string,
-};
 
 export default {
   title: "Components/Toggle",

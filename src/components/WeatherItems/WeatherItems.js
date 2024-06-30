@@ -1,15 +1,13 @@
-import { useSelector } from "react-redux";
-
 import { WeatherItem } from "./WeatherItem";
 
 import styles from "./WeatherItems.module.css";
 
-export const WeatherItems = ({ weatherData, onCardClick }) => {
-  const activeIndex = useSelector((state) => state.userSettings.idx);
-  const { metricSymbol } = useSelector(
-    (state) => state.weatherData.metricsData
-  );
-
+export const WeatherItems = ({
+  weatherData,
+  onCardClick,
+  activeIndex,
+  metricSymbol,
+}) => {
   const handleCardClick = (index) => {
     onCardClick(index);
   };

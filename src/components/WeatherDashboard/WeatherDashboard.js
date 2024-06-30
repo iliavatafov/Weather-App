@@ -10,6 +10,9 @@ export const WeatherDashboard = () => {
   const units = useSelector((state) => state.userSettings.units);
   const selectedDayIdx = useSelector((state) => state.userSettings.idx);
   const weatherData = useSelector((state) => state.weatherData.fiveDaysWeather);
+  const { metricSymbol, windSpeedUnit } = useSelector(
+    (state) => state.weatherData.metricsData
+  );
 
   const dispatch = useDispatch();
 
@@ -27,10 +30,17 @@ export const WeatherDashboard = () => {
               weatherData={weatherData.list[selectedDayIdx]}
               cityName={weatherData.city.name}
               country={weatherData.city.country}
+              metricSymbol={metricSymbol}
+              windSpeedUnit={windSpeedUnit}
             />
           </div>
           <div className={styles["items-wrapper"]}>
-            <WeatherItems weatherData={weatherData} onCardClick={onCardClick} />
+            <WeatherItems
+              weatherData={weatherData}
+              onCardClick={onCardClick}
+              activeIndex={selectedDayIdx}
+              metricSymbol={metricSymbol}
+            />
           </div>
         </>
       )}
