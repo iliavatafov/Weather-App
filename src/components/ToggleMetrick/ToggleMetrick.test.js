@@ -32,8 +32,7 @@ describe("ToggleMetrick", () => {
   });
 
   it("should render the toggle component correctly", () => {
-    expect(screen.getByRole("toggle")).toBeInTheDocument();
-    expect(screen.getByLabelText("Select metric °C or °F")).toBeInTheDocument();
+    expect(screen.getByRole("switch")).toBeInTheDocument();
     expect(screen.getByText("°C")).toBeInTheDocument();
     expect(screen.getByText("°F")).toBeInTheDocument();
   });

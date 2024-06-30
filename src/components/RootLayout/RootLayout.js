@@ -1,16 +1,16 @@
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import { ErrorModal } from "../Modals/ErrorModal";
 import { Header } from "../Header/Header";
 import { WeatherDashboard } from "../WeatherDashboard/WeatherDashboard";
 
-import styles from "../RootLayout/RootLayout.module.css";
-import { useEffect, useState } from "react";
-
 import {
   weatherBackgrounds,
   weatherStateMapping,
 } from "../../constants/constants";
+
+import styles from "../RootLayout/RootLayout.module.css";
 
 export const RootLayout = () => {
   const [backgroundImage, setBackgroundImage] = useState(

@@ -1,12 +1,14 @@
-import { useSelector } from "react-redux";
-
 import styles from "./WeatherItem.module.css";
 
-export const WeatherItem = ({ day, index, isActive, handleCardClick }) => {
-  const { metricSymbol } = useSelector(
-    (state) => state.weatherData.metricsData
-  );
-
+export const WeatherItem = ({
+  day,
+  index,
+  isActive,
+  metricSymbol,
+  handleCardClick,
+  textColor = "#fff",
+  borderColor = "#fff",
+}) => {
   const handleClick = () => {
     handleCardClick(index);
   };
@@ -21,22 +23,23 @@ export const WeatherItem = ({ day, index, isActive, handleCardClick }) => {
 
   return (
     <article
-      className={`${styles["weather-item"]} ${
-        isActive ? styles["active"] : ""
-      }`}
+      className={`${styles["weather-item"]} ${isActive ? styles["active"] : ""}`}
       onClick={handleClick}
-      role="weather-card"
+      role="article"
       aria-label="click-the-card-to-select"
     >
-      <div className={styles["highlight-line"]}></div>
+      <div
+        className={styles["highlight-line"]}
+        style={{ backgroundColor: borderColor }}
+      ></div>
       <header>
-        <h3>{formattedDate}</h3>
+        <h3 style={{ color: textColor }}>{formattedDate}</h3>
       </header>
       <div>
         <img src={iconUrl} alt={weatherDescription} />
       </div>
       <footer>
-        <p>
+        <p style={{ color: textColor }}>
           {temperature}
           {metricSymbol}
         </p>

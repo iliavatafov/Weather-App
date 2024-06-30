@@ -32,7 +32,7 @@ describe("WeatherDashboard", () => {
 
   it("should render the WeatherDashboard component correctly", () => {
     expect(screen.getByRole("weather-dashboard")).toBeInTheDocument();
-    expect(screen.getByRole("weather-card")).toBeInTheDocument();
-    expect(screen.getByRole("weather-items")).toBeInTheDocument();
+    expect(screen.getByTestId("weather-card")).toBeInTheDocument();
+    expect(screen.getByTestId("weather-items")).toBeInTheDocument();
   });
 });

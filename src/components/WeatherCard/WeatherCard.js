@@ -1,13 +1,16 @@
-import { useEffect } from "react";
-
-import { useDispatch, useSelector } from "react-redux";
-import { setMetricsData } from "../../store/weatherDataSlice";
-
+import { useMemo } from "react";
+import { useSelector } from "react-redux";
+import { useMetricsData } from "../../hooks/useMetricsData";
 import { capitalizeFirstLetter, formatDateTime } from "../../helpers/helpers";
+
+import { WeatherSection } from "./subcomponents/WeatherSection";
 
 import styles from "./WeatherCard.module.css";
 
 export const WeatherCard = ({ weatherData, cityName, country }) => {
+  const units = useSelector((state) => state.userSettings.units);
+  const { metricSymbol, windSpeedUnit } = useMetricsData(units);
+
   const {
     main: { temp, feels_like, temp_min, temp_max, humidity },
     weather,
@@ -15,78 +18,42 @@ export const WeatherCard = ({ weatherData, cityName, country }) => {
     dt_txt,
   } = weatherData;
 
-  const units = useSelector((state) => state.userSettings.units);
-  const { metricSymbol, windSpeedUnit } = useSelector(
-    (state) => state.weatherData.metricsData
+  const formattedDate = useMemo(() => formatDateTime(dt_txt), [dt_txt]);
+  const weatherDescription = useMemo(
+    () => capitalizeFirstLetter(weather[0].description),
+    [weather]
   );
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (units === "metric") {
-      dispatch(
-        setMetricsData({
-          metricSymbol: "°C",
-          windSpeedUnit: "m/s",
-        })
-      );
-    } else {
-      dispatch(
-        setMetricsData({
-          metricSymbol: "°F",
-          windSpeedUnit: "mph",
-        })
-      );
-    }
-  }, [units, dispatch]);
-
-  const weatherDescription = weather[0].description;
   const iconUrl = `http://openweathermap.org/img/wn/${weather[0].icon}.png`;
+  const temperature = Math.round(temp);
+
+  const tempItems = [
+    { label: "Feels like", value: Math.round(feels_like), unit: metricSymbol },
+    { label: "Min Temp", value: Math.round(temp_min), unit: metricSymbol },
+    { label: "Max Temp", value: Math.round(temp_max), unit: metricSymbol },
+  ];
+
+  const windItems = [
+    { label: "Humidity", value: humidity, unit: "%" },
+    { label: "Wind", value: wind.speed, unit: windSpeedUnit },
+  ];
 
   return (
-    <article
-      className={styles["weather-card"]}
-      role="slected-card-weather-data"
-    >
+    <article className={styles["weather-card"]} data-testid="weather-card">
       <header className={styles["card-header"]}>
-        <section className={styles.location}>
+        <section className={styles["location"]}>
           <h3>
             {cityName}, {country}
           </h3>
-          <h3>{formatDateTime(dt_txt)}</h3>
+          <h3>{formattedDate}</h3>
         </section>
         <img src={iconUrl} alt={weatherDescription} />
       </header>
       <section className={styles["card-body"]}>
-        <h2>{`${Math.round(temp)}${metricSymbol}`}</h2>
-        <p>{capitalizeFirstLetter(weatherDescription)}</p>
+        <h2>{`${temperature}${metricSymbol}`}</h2>
+        <p>{weatherDescription}</p>
         <section className={styles["weather-data-container"]}>
-          <div className={styles["temperature-section"]}>
-            <ul>
-              <li>
-                <span>Feels like:</span> {Math.round(feels_like)}
-                {metricSymbol}
-              </li>
-              <li>
-                <span>Min Temp:</span> {Math.round(temp_min)}
-                {metricSymbol}
-              </li>
-              <li>
-                <span>Max Temp:</span> {Math.round(temp_max)}
-                {metricSymbol}
-              </li>
-            </ul>
-          </div>
-          <div className={styles["wind-section"]}>
-            <ul>
-              <li>
-                <span>Humidity:</span> {humidity}%
-              </li>
-              <li>
-                <span>Wind:</span> {wind.speed} {windSpeedUnit}
-              </li>
-            </ul>
-          </div>
+          <WeatherSection title="Temperature" items={tempItems} />
+          <WeatherSection title="Wind" items={windItems} />
         </section>
       </section>
     </article>

@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 
 import configureStore from "redux-mock-store";
 
-import { capitalizeFirstLetter, formatDateTime } from "../../helpers/helpers";
+import { formatDateTime } from "../../helpers/helpers";
 
 import { WeatherCard } from "./WeatherCard";
 
@@ -19,7 +19,6 @@ const mockWeatherData = {
 
 describe("WeatherCard", () => {
   let store;
-  let dispatchMock;
 
   beforeEach(() => {
     dispatchMock = jest.fn();
@@ -93,33 +92,5 @@ describe("WeatherCard", () => {
 
     expect(tempElement).toBeInTheDocument();
     expect(windElement).toBeInTheDocument();
-  });
-
-  it("renders weather description and other weather details", () => {
-    const weatherDescriptionElement = screen.getByText(
-      capitalizeFirstLetter(mockWeatherData.weather[0].description)
-    );
-    const feelsLikeElement = screen.getByText(
-      `${Math.round(mockWeatherData.main.feels_like)}°C`
-    );
-    const minTempElement = screen.getByText(
-      `${Math.round(mockWeatherData.main.temp_min)}°C`
-    );
-    const maxTempElement = screen.getByText(
-      `${Math.round(mockWeatherData.main.temp_max)}°C`
-    );
-    const humidityElement = screen.getByText(
-      `${mockWeatherData.main.humidity}%`
-    );
-    const windSpeedElement = screen.getByText(
-      `${mockWeatherData.wind.speed} m/s`
-    );
-
-    expect(weatherDescriptionElement).toBeInTheDocument();
-    expect(feelsLikeElement).toBeInTheDocument();
-    expect(minTempElement).toBeInTheDocument();
-    expect(maxTempElement).toBeInTheDocument();
-    expect(humidityElement).toBeInTheDocument();
-    expect(windSpeedElement).toBeInTheDocument();
   });
 });

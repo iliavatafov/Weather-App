@@ -48,7 +48,7 @@ CustomBackgroundColor.args = {
   labels: ["Inactive", "Active"],
   isChecked: false,
   handleChange: () => {},
-  toggleBackgroundColor: "green",
+  toggleBackgroundColor: "#A0CDD9",
   labelsColor: "white",
 };
 
@@ -56,5 +56,5 @@ export const LabelsColor = Template.bind({});
 LabelsColor.args = {
   labels: ["Off", "On"],
   isChecked: true,
-  labelsColor: "blue",
+  labelsColor: "#A0CDD9",
 };

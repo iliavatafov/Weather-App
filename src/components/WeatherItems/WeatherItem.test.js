@@ -1,12 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 
-import { Provider } from "react-redux";
-
-import configureStore from "redux-mock-store";
-
 import { WeatherItem } from "./WeatherItem";
-
-const mockStore = configureStore([]);
 
 const handleCardClick = jest.fn();
 
@@ -17,26 +11,15 @@ const mockDayData = {
 };
 
 describe("WeatherItem", () => {
-  let store;
-
   beforeEach(() => {
-    store = mockStore({
-      weatherData: {
-        metricsData: {
-          metricSymbol: "°C",
-        },
-      },
-    });
-
     render(
-      <Provider store={store}>
-        <WeatherItem
-          day={mockDayData}
-          index={0}
-          isActive={true}
-          handleCardClick={handleCardClick}
-        />
-      </Provider>
+      <WeatherItem
+        day={mockDayData}
+        index={0}
+        isActive={true}
+        metricSymbol="°C"
+        handleCardClick={handleCardClick}
+      />
     );
   });
 
@@ -51,12 +34,12 @@ describe("WeatherItem", () => {
   });
 
   it("applies 'active' class when isActive is true", () => {
-    const weatherItem = screen.getByRole("weather-card");
+    const weatherItem = screen.getByRole("article");
     expect(weatherItem).toHaveClass("active");
   });
 
   it("invokes handleCardClick when clicked", () => {
-    const weatherItem = screen.getByRole("weather-card");
+    const weatherItem = screen.getByRole("article");
 
     fireEvent.click(weatherItem);
 

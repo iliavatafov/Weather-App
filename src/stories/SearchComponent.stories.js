@@ -36,19 +36,19 @@ CustomPlaceholder.args = {
 export const CustomSearchColor = Template.bind({});
 CustomSearchColor.args = {
   handleSearch,
-  color: "red",
+  color: "#A0CDD9",
 };
 
 export const TextColor = Template.bind({});
 TextColor.args = {
   handleSearch,
-  textColor: "blue",
+  textColor: "#A0CDD9",
 };
 
 export const PlaceholderColor = Template.bind({});
 PlaceholderColor.args = {
   handleSearch,
-  placeholderColor: "blue",
+  placeholderColor: "#A0CDD9",
 };
 
 export const SearchActive = Template.bind({});

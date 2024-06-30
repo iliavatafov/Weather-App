@@ -12,7 +12,6 @@
 }
 
 .weather-item.active .highlight-line {
-  background-color: white;
   height: 5px;
   width: 100%;
 }
