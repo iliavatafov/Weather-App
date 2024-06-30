@@ -10,7 +10,7 @@ This is a Weather App built with React.js.
 
 You can access the app directly at [weather-app.com](https://66818f66c64fca2517727a6b--unique-cactus-314a59.netlify.app/).
 
-You can explore and test the components using Storybook. Visit the Weather App Storybook to see detailed documentation and interactive demos. [weather-app.com](https://66819035f102c14c77c4e1a8--lucky-cat-362fc0.netlify.app/?path=/story/weathercard--default).
+You can explore and test the components using Storybook. Visit the Weather App Storybook to see detailed documentation and interactive demos. [weather-app-storybook.com](https://66819035f102c14c77c4e1a8--lucky-cat-362fc0.netlify.app/?path=/story/weathercard--default).
 
 Follow the instructions below to get the project up and running on your local machine.
 
