@@ -15,7 +15,7 @@ export const Header = () => {
   const fetchWeatherData = useFetchWeatherData(units);
 
   useEffect(() => {
-    const city = fetchWeatherData(ciryName);
+    fetchWeatherData(ciryName);
   }, [fetchWeatherData]);
 
   return (

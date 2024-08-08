@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setMetricsData } from "../store/weatherDataSlice";
 
-export const useMetricsData = (units) => {
+const useMetricsData = (units) => {
   const dispatch = useDispatch();
   const metricsData = useSelector((state) => state.weatherData.metricsData);
 
@@ -26,3 +26,5 @@ export const useMetricsData = (units) => {
 
   return metricsData;
 };
+
+export default useMetricsData;

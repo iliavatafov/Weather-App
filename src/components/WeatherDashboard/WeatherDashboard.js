@@ -5,14 +5,13 @@ import { WeatherItems } from "../WeatherItems/WeatherItems";
 
 import styles from "./WeatherDashboard.module.css";
 import { setIdx } from "../../store/userSettingsSlice";
+import useMetricsData from "../../hooks/useMetricsData";
 
 export const WeatherDashboard = () => {
   const units = useSelector((state) => state.userSettings.units);
   const selectedDayIdx = useSelector((state) => state.userSettings.idx);
   const weatherData = useSelector((state) => state.weatherData.fiveDaysWeather);
-  const { metricSymbol, windSpeedUnit } = useSelector(
-    (state) => state.weatherData.metricsData
-  );
+  const { metricSymbol, windSpeedUnit } = useMetricsData(units);
 
   const dispatch = useDispatch();
 

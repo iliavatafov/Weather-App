@@ -37,6 +37,7 @@ export const RootLayout = () => {
     if (weatherData) {
       const weatherDescription =
         weatherData.list[selectedDayIdx].weather[0].main;
+
       const imageKey = weatherStateMapping[weatherDescription];
 
       setBackgroundImage(weatherBackgrounds[imageKey]);
